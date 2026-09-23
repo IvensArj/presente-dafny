@@ -1,0 +1,119 @@
+/* ================================
+   BEFORE YOUR EYES — estilos
+   Altere cores nas variáveis abaixo
+   ================================ */
+
+:root {
+  /* Estado escuro (inicial) */
+  --bg-dark: #050505;
+  --text-dark: #d8d4c9;
+
+  /* Estado claro (revelado) */
+  --bg-light: #eeece4;
+  --text-light: #1c1a16;
+  --accent: #3e5c55; /* usado na chave */
+
+  --duration: 1.8s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  font-family: 'Inter', -apple-system, sans-serif;
+  transition: background var(--duration) ease, color var(--duration) ease;
+  overflow-x: hidden;
+}
+
+body.is-light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+.stage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8vh 6vw;
+  text-align: center;
+}
+
+.line {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.15rem, 3.4vw, 1.9rem);
+  line-height: 1.55;
+  max-width: 34ch;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.line--opening {
+  opacity: 1;
+  transition: opacity 1.4s ease;
+}
+
+body.is-light .line--opening {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 1.6s ease 0.3s, transform 1.6s ease 0.3s;
+}
+
+body.is-light .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.line--closing {
+  font-size: clamp(1.15rem, 3.4vw, 1.9rem);
+}
+
+.line--sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: inherit;
+  opacity: 0.72;
+  max-width: 28ch;
+}
+
+.key {
+  margin-top: 1.4rem;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 2.2s ease 1.2s;
+}
+
+.key.is-shown {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .line--opening, .reveal, .key {
+    transition-duration: 0.3s;
+  }
+}
